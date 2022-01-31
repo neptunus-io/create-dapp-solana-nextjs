@@ -1,3 +1,23 @@
 .container {
-    @apply flex flex-col items-center
+  @apply flex flex-col items-center;
+}
+
+.wallet-adapter-button {
+  background-color: #404144;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-family: "Inter", "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 20px;
+}
+
+.wallet-adapter-button:not([disabled]):hover {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.15) 0 0);
 }

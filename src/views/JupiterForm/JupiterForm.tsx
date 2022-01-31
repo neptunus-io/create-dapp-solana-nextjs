@@ -12,6 +12,7 @@ import FeeInfo from "./FeeInfo";
 interface IJupiterFormProps { }
 type UseJupiterProps = Parameters<typeof useJupiter>[0];
 
+
 const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
   const wallet = useWallet();
   const { connection } = useConnection();
@@ -55,7 +56,7 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
       ...formValue,
       amount: amountInDecimal,
     });
-
+  
   const validOutputMints = useMemo(
     () => routeMap.get(formValue.inputMint?.toBase58() || "") || allTokenMints,
     [routeMap, formValue.inputMint?.toBase58()]
@@ -87,7 +88,7 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
         <select
           id="inputMint"
           name="inputMint"
-          className="mt-1 bg-neutral block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+          className="block w-full py-2 pl-3 pr-10 mt-1 text-base border-gray-300 rounded-md bg-neutral focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           value={formValue.inputMint?.toBase58()}
           onChange={(e) => {
             const pbKey = new PublicKey(e.currentTarget.value);
@@ -116,7 +117,7 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
         <select
           id="outputMint"
           name="outputMint"
-          className="mt-1 bg-neutral block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+          className="block w-full py-2 pl-3 pr-10 mt-1 text-base border-gray-300 rounded-md bg-neutral focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           value={formValue.outputMint?.toBase58()}
           onChange={(e) => {
             const pbKey = new PublicKey(e.currentTarget.value);
@@ -146,7 +147,7 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
           <input
             name="amount"
             id="amount"
-            className="shadow-sm bg-neutral p-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+            className="block w-full p-2 border-gray-300 rounded-md shadow-sm bg-neutral focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             value={formValue.amount}
             type="text"
             pattern="[0-9]*"
@@ -190,7 +191,10 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
             <div>
               <div>
                 Best route info :{" "}
-                {route.marketInfos.map((info) => info.marketMeta.amm.label)}
+                {route.marketInfos.map((info) => {
+ 
+                  return info.marketMeta.amm.label
+                } )}
               </div>
               <div>
                 Output:{" "}
@@ -248,7 +252,7 @@ const JupiterForm: FunctionComponent<IJupiterFormProps> = (props) => {
               }
             }
           }}
-          className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          className="inline-flex items-center px-4 py-2 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
           Swap Best Route
         </button>
